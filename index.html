@@ -5,9 +5,12 @@
     <title>Hello World!</title>
     <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <script defer src="js/index.js"></script>
   </head>
   <body>
     <h1>Hello World!</h1>
+    <button id="autoButton">Auto Mode</button>
+    <button id="testButton">test button</button>
     We are using node <script>document.write(process.versions.node)</script>,
     Chrome <script>document.write(process.versions.chrome)</script>,
     and Electron <script>document.write(process.versions.electron)</script>.
