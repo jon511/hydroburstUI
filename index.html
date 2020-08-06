@@ -19,18 +19,7 @@
       </div>
     </div>
     <div>
-      <div>
-        <input type="radio" name="testTypeGroup" id="standardTestSelected" value="standard" checked>  
-        <label for="standardTestSelected">Standard Burst Test</label>
-      </div>
-      <div>
-        <input type="radio" name="testTypeGroup" id="cycleTestSeleceted" value="cycleTest">
-        <label for="cycleTestSeleceted">Cycle Test</label>
-      </div>
-      <div>
-        <input type="radio" name="testTypeGroup" id="dynamicTestSelected" value="dynamicBurst">
-        <label for="dynamicTestSelected">Dynamic Burst Test</label>
-      </div>
+      
       <div>
         <label for="rampRateWrite">Ramp Rate:</label>
         <input type="number" name="rampRate" id="rampRateWrite">
@@ -57,8 +46,31 @@
     <button id="closeDoorButton">Close Door</button>
     <button id="waterInletButton">Water Inlet</button>
     <button id="resetButton">Reset</button>
+
+    
     We are using node <script>document.write(process.versions.node)</script>,
     Chrome <script>document.write(process.versions.chrome)</script>,
     and Electron <script>document.write(process.versions.electron)</script>.
-  </body>
+    <div id="setupDiv" class="setupClass">
+    
+      <div class="radioGroup">
+        <h2>OPERATING MODE</h2>
+        <div class="radioButton">
+          <input type="radio" name="testTypeGroup" id="standardTestSelected" value="standard" checked>  
+          <label for="standardTestSelected">Standard Burst Test</label>
+        </div>
+        <div class="radioButton">
+          <input type="radio" name="testTypeGroup" id="cycleTestSeleceted" value="cycleTest">
+          <label for="cycleTestSeleceted">Cycle Test</label>
+        </div>
+        <div class="radioButton">
+          <input type="radio" name="testTypeGroup" id="dynamicTestSelected" value="dynamicBurst">
+          <label for="dynamicTestSelected">Dynamic Burst Test</label>
+        </div>
+        <button class="testButton">Test Button</button>
+      </div>
+    
+    </div>
+
+</body>
 </html>

@@ -3,3 +3,36 @@ h1 {
     text-align: center;
     color: blue;
 }
+
+.setupClass {
+    border: rgb(179, 179, 179) 15px inset;
+    border-style: ridge;
+    background-color:rgb(179, 179, 179);
+    height: 50%;
+    width: 80%;
+    position: fixed;
+    top: 50px;
+    left: 10%;
+    z-index: 1;
+}
+
+.radioButton{
+    border: solid 2px black;
+    font-size: xx-large;
+    font-weight: bold;
+    margin: 10px;
+}
+
+input[type='radio'] { transform: scale(1.5); }
+
+.hidden {
+    display: none;
+}
+
+.testButton {
+    width: 50%;
+    height: 50px;
+    font-size: xx-large;
+    font-weight: bold;
+    background-color: green;
+}
