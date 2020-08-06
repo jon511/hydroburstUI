@@ -5,12 +5,58 @@
     <title>Hello World!</title>
     <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <script defer src="js/plcInputs.js"></script>
+    <script defer src="js/cycleTest.js"></script>
     <script defer src="js/index.js"></script>
+    <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
-    <h1>Hello World!</h1>
+    <h1>MAIN SCREEN</h1>
+    <div id="resultDiv">
+      <div id="burstPressureDiv">
+        <label for="burstPressureResultId">BURST PRESSURE (PSI)</label>
+        <input type="text" name="burstPressureResult" id="burstPressureResultId" disabled>
+      </div>
+    </div>
+    <div>
+      <div>
+        <input type="radio" name="testTypeGroup" id="standardTestSelected" value="standard" checked>  
+        <label for="standardTestSelected">Standard Burst Test</label>
+      </div>
+      <div>
+        <input type="radio" name="testTypeGroup" id="cycleTestSeleceted" value="cycleTest">
+        <label for="cycleTestSeleceted">Cycle Test</label>
+      </div>
+      <div>
+        <input type="radio" name="testTypeGroup" id="dynamicTestSelected" value="dynamicBurst">
+        <label for="dynamicTestSelected">Dynamic Burst Test</label>
+      </div>
+      <div>
+        <label for="rampRateWrite">Ramp Rate:</label>
+        <input type="number" name="rampRate" id="rampRateWrite">
+      </div>
+      <div>
+        <label for="cycleCountWrite">Cycle Count:</label>
+        <input type="number" name="cycleCount" id="cycleCountWrite">
+      </div>
+      <div>
+        <label for="minPressureWrite">Minimum Pressure:</label>
+        <input type="number" name="minPressure" id="minPressureWrite">
+      </div>
+      <div>
+        <label for="maxPressureWrite">Maximum Pressure:</label>
+        <input type="number" name="maxPressure" id="maxPressureWrite">
+      </div>
+    </div>
     <button id="autoButton">Auto Mode</button>
-    <button id="testButton">test button</button>
+    <button id="manualButton">Manual Mode</button>
+    <button id="writeSetupButton">Write To PLC</button>
+    <button id="startButton">Start</button>
+    <button id="stopButton">Stop</button>
+    <button id="openDoorButton">Open Door</button>
+    <button id="closeDoorButton">Close Door</button>
+    <button id="waterInletButton">Water Inlet</button>
+    <button id="resetButton">Reset</button>
     We are using node <script>document.write(process.versions.node)</script>,
     Chrome <script>document.write(process.versions.chrome)</script>,
     and Electron <script>document.write(process.versions.electron)</script>.
