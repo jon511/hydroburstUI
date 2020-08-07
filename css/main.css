@@ -9,7 +9,7 @@ h1 {
     border-style: ridge;
     background-color:rgb(179, 179, 179);
     height: 50%;
-    width: 80%;
+    width: 60%;
     position: fixed;
     top: 50px;
     left: 10%;
@@ -29,10 +29,14 @@ input[type='radio'] { transform: scale(1.5); }
     display: none;
 }
 
-.testButton {
+.cycleButton {
     width: 50%;
     height: 50px;
     font-size: xx-large;
     font-weight: bold;
-    background-color: green;
+    border-radius: 10px;
+}
+
+.green {
+    background-color: limegreen;
 }

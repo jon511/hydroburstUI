@@ -9,6 +9,9 @@ let programsSettings = JSON.parse(settingsFile)
 const PLC = new Controller()
 
 let isConnected = false
+let standardTestSelected = false
+let cycleTestSelected = false
+let dynamicTestSelected = false
 
 PLC.subscribe(new Tag('hmiAutoMode'))
 PLC.subscribe(new Tag('hmiEstopOK'))
@@ -31,12 +34,17 @@ PLC.subscribe(new Tag('hmiAcutalPressure'))
 
 PLC.connect(programsSettings.ipAddress, 0).then(() => {
     PLC.scan_rate = 50
-    PLC.scan()
+    //PLC.scan()
+    setInterval(readGroup1, 50)
 }).catch(() => {
-    console.log('fucking error')
+    console.log('PLC connection error')
     PLC.destroy()
     
 })
+
+const ReadTag = (tag) => {
+    PLC.readTag(autoButton)
+}
 
 PLC.on('connect', () => isConnected = true)
 PLC.on('close', () => isConnected = false)
@@ -48,13 +56,12 @@ let LastBurstPressure = 0.0
 let ActualPressure = 0.0
 let CycleTime = 0.0
 
-
 let CurrentTestType = 0
 let RampRate = 0
 
 let CycleTestActive = false
 
-const autoButton = new Tag('hmiAutoButton', null, BOOL)
+const autoButton = new Tag('hmiAutoButton', null, BOOL, 500)
 const manualButton = new Tag('hmiManualButton', null, BOOL)
 const startButton = new Tag('hmiStartButton', null, BOOL)
 const stopButton = new Tag('hmiStopButton', null, BOOL)
@@ -63,6 +70,9 @@ const closeDoorButton = new Tag('hmiDoorCloseButton', null, BOOL)
 const waterInletButton = new Tag('hmiWaterInletButton', null, BOOL)
 const clearFaultListButton = new Tag('hmiClearFaultListButton', null, BOOL)
 const resetButton = new Tag('hmiResetButton', null, BOOL)
+const standardTestPushbutton = new Tag('hmiStandTestSelectPushbutton', null, BOOL)
+const cycleTestPushbutton = new Tag('hmiCycleTestSelectPushbutton', null, BOOL)
+const dynamicTestPushbutton = new Tag('hmiDynamicTestSelectPushbutton', null, BOOL)
 
 const testTypeWrite = new Tag('hmiTestTypeWrite', null, DINT)
 const rampRateWrite = new Tag('hmiRampRateWrite', null, DINT)
@@ -70,12 +80,63 @@ const cycleCountWrite = new Tag('hmiCycleCountWrite', null, DINT)
 const minPressureWrite = new Tag('hmiMinPressureWrite', null, DINT)
 const maxPressureWrite = new Tag('hmiMaxPressureWrite', null, DINT)
 
-const group = new TagGroup();
+const group = new TagGroup()
 group.add(testTypeWrite)
 group.add(rampRateWrite)
 group.add(cycleCountWrite)
 group.add(minPressureWrite)
 group.add(maxPressureWrite)
+
+const group1 = new TagGroup()
+group1.add(new Tag('hmiAutoMode'))
+group1.add(new Tag('hmiEstopOK'))
+group1.add(new Tag('hmiHydraulicPumpOn'))
+group1.add(new Tag('hmiOilLevelOk'))
+group1.add(new Tag('hmiStandardTestSelected'))
+group1.add(new Tag('hmiCycleTestSelected'))
+group1.add(new Tag('hmiDynamicTestSelected'))
+
+const updateUI = () => {
+    if(standardTestSelected){
+        document.querySelector('#standardTestButton').classList.add('green')
+    }else{
+        document.querySelector('#standardTestButton').classList.remove('green')
+    }
+
+    if(cycleTestSelected){
+        document.querySelector('#cycleTestButton').classList.add('green')
+    }else{
+        document.querySelector('#cycleTestButton').classList.remove('green')
+    }
+
+    if(dynamicTestSelected){
+        document.querySelector('#dynamicTestButton').classList.add('green')
+    }else{
+        document.querySelector('#dynamicTestButton').classList.remove('green')
+    }
+}
+
+const readGroup1 = async () => {
+    await PLC.readTagGroup(group1);
+ 
+    // log the values to the console
+    group1.forEach(tag => {
+
+        if (tag.name === 'hmiStandardTestSelected'){
+            standardTestSelected = tag.value
+        }
+        if (tag.name === 'hmiCycleTestSelected'){
+            cycleTestSelected = tag.value
+        }
+        if (tag.name === 'hmiDynamicTestSelected'){
+            dynamicTestSelected = tag.value
+        }
+
+    });
+
+    updateUI()
+}
+
 
 const SendButton = (name, val) => {
     if (isConnected)
@@ -158,16 +219,31 @@ document.getElementById('resetButton').addEventListener('mousedown', () => SendB
 document.getElementById('resetButton').addEventListener('mouseup', () => SendButton(resetButton, false))
 document.getElementById('resetButton').addEventListener('mouseleave', () => SendButton(resetButton, false))
 
+document.getElementById('standardTestButton').addEventListener('mousedown', () => SendButton(standardTestPushbutton, true))
+document.getElementById('standardTestButton').addEventListener('mouseup', () => SendButton(standardTestPushbutton, false))
+document.getElementById('standardTestButton').addEventListener('mouseleave', () => SendButton(standardTestPushbutton, false))
+
+document.getElementById('cycleTestButton').addEventListener('mousedown', () => SendButton(cycleTestPushbutton, true))
+document.getElementById('cycleTestButton').addEventListener('mouseup', () => SendButton(cycleTestPushbutton, false))
+document.getElementById('cycleTestButton').addEventListener('mouseleave', () => SendButton(cycleTestPushbutton, false))
+
+document.getElementById('dynamicTestButton').addEventListener('mousedown', () => SendButton(dynamicTestPushbutton, true))
+document.getElementById('dynamicTestButton').addEventListener('mouseup', () => SendButton(dynamicTestPushbutton, false))
+document.getElementById('dynamicTestButton').addEventListener('mouseleave', () => SendButton(dynamicTestPushbutton, false))
+
 document.getElementById('writeSetupButton').addEventListener('click', writeSetupToPLC)
 
 
-
 PLC.forEach(tag => {
+    
     tag.on('Initialized', tag => {
         if (tag.name === 'CycleTestActive')
             CycleTestActive = tag.value
 
         
+        console.log(tag.name)
+        console.log(tag.value)
+
     })
 
     tag.on('Changed', (tag, oldValue) => {
@@ -183,5 +259,10 @@ PLC.forEach(tag => {
 
         console.log(`cycle test active = ${CycleTestActive}`)
 
+        console.log(tag.value)
+
+        // autoButton.value = !autoButton.value
+
     })
+
 })
