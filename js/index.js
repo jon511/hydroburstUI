@@ -233,6 +233,9 @@ document.getElementById('dynamicTestButton').addEventListener('mouseleave', () =
 
 document.getElementById('writeSetupButton').addEventListener('click', writeSetupToPLC)
 
+document.querySelector('#closeSetupPageButton').addEventListener('click', () => document.querySelector('.setupClass').classList.add('hidden'))
+document.querySelector('#showSetup').addEventListener('click', () => document.querySelector('.setupClass').classList.remove('hidden'))
+
 
 PLC.forEach(tag => {
     
