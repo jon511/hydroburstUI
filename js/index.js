@@ -246,6 +246,7 @@ PLC.forEach(tag => {
         
         console.log(tag.name)
         console.log(tag.value)
+        console.log("test")
 
     })
 
