@@ -1,14 +1,62 @@
+body {
+    background-color:rgb(179, 179, 179);
+}
+
 h1 {
-    background-color: lightgrey;
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 5px;
     text-align: center;
     color: blue;
+}
+
+.liveReadingsContainer{
+    height: 85px;
+}
+
+.liveReadings{
+    background-color: rgba(0,0,0,0.5);
+    width: 30%;
+    float: right;
+    border-radius: 10px;
+}
+
+.liveReadings h2 {
+    text-align: center;
+    margin: 0;
+    text-decoration: underline;
+}
+
+.liveReading{
+    text-align: right;
+    display: grid;
+    grid-template-columns: 80% 20%;
+    color: whitesmoke;
+}
+
+
+.liveReading label {
+    font-size: x-large;
+    font-weight: bold;
+    margin: 0 20px 0 20px;
+}
+
+.resultItem{
+    /* display: grid; */
+    grid-template-columns: 80% 20%;
+}
+
+
+.resultItem label {
+    font-size: x-large;
+    font-weight: bold;
+    margin: 0 20px 0 20px;
 }
 
 .setupClass {
     border: rgb(179, 179, 179) 15px inset;
     border-style: ridge;
     background-color:rgb(179, 179, 179);
-    height: 50%;
+    height: 70%;
     width: 60%;
     position: fixed;
     top: 50px;
@@ -25,11 +73,8 @@ h1 {
 
 input[type='radio'] { transform: scale(1.5); }
 
-.hidden {
-    display: none;
-}
-
 .cycleButton {
+    margin: 10px 0;
     width: 50%;
     height: 50px;
     font-size: xx-large;
@@ -38,6 +83,344 @@ input[type='radio'] { transform: scale(1.5); }
     outline: none;
 }
 
+.menuButton {
+    width: 25%;
+    height: 50px;
+    background-color: rgba(255,255,0,0.3);
+    font-size: x-large;
+    font-weight: bold;
+    border-radius: 10px;
+    outline: none;
+}
+
 .green {
     background-color: limegreen;
+}
+
+.opMode {
+    text-align: center;
+}
+
+.opMode h2 {
+    margin: 0;
+    color: blue;
+}
+
+.si1 {
+    grid-area: si1;
+}
+
+.si2 {
+    grid-area: si2;
+}
+
+.si3 {
+    grid-area: si3;
+}
+
+.si4 {
+    grid-area: si4;
+}
+
+.setupInputs {
+    margin-top: 50px;
+    display: grid;
+    grid-template-areas: 
+        "si1 si3"
+        "si2 si4";
+}
+
+.setupInput{
+    text-align: center;
+    margin-bottom: 20px;
+    /* border: 2px solid black; */
+}
+
+
+.setupInput label {
+    font-size: x-large;
+    font-weight: bold;
+    margin: 20px;
+}
+
+
+
+.setupInput input {
+     margin: 10px 0;
+     height: 35px;
+     width: 50%;
+}
+
+
+
+.enterButton {
+    width: 25%;
+    height: 45px;
+    background-color: rgba(255,255,255,0.12);
+    font-size: x-large;
+    font-weight: bold;
+    border-radius: 10px;
+    outline: none;
+}
+
+.enterButton:active {
+    background-color: rgba(255,255,255,0.2);
+
+}
+
+#closeSetupPageButton{
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+
+#showNumpadButton{
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+}
+
+.pushbutton {
+    width: 125px;
+    height: 65px;
+    border-radius: 10px;
+    margin: 20px 0;
+    /* background-color: rgba(0,255,0, 0.5); */
+    font-size: large;
+    font-weight: bolder;
+    outline: none;
+}
+
+.ind-on {
+    background-color: rgba(255, 255, 0, 0.7);
+}
+
+.ind-off {
+    background-color: rgba(0,0,0,0.2);
+}
+
+#manualButton{
+    grid-area: manButton;
+}
+
+#autoButton {
+    grid-area: autButton;
+}
+
+#startButton {
+    grid-area: staButton;
+}
+
+#stopButton {
+    grid-area: stoButton;
+}
+
+#openDoorButton {
+    grid-area: opDButton;
+}
+
+#closeDoorButton {
+    grid-area: clDButton;
+}
+
+#waterInletButton {
+    grid-area: wInButton;
+}
+
+#resetButton {
+    grid-area: resButton;
+}
+
+#showSetup {
+    grid-area: setButton;
+}
+
+#showStatus{
+    grid-area: st1Button;
+}
+
+#showKeyboard {
+    grid-area: keyButton;
+}
+
+#showGraph {
+    grid-area: graButton;
+}
+
+#showAlarm {
+    grid-area: alaButton;
+}
+
+.mainButtons{
+    width: 100%;
+    height: 70%;
+    display: grid;
+    grid-gap: 6px;
+    grid-template-areas:
+        "autButton ......... staButton stoButton ......... wInButton"
+        "manButton resButton ......... ......... ......... alaButton"
+        "setButton st1Button opDButton clDButton keyButton graButton";
+}
+
+.container-2-left {
+    grid-area: con-2-left;
+    width: 10%;
+}
+
+.container-2-center {
+    grid-area: con-2-center;
+    width:80%;
+}
+
+.container-2-right {
+    grid-area: con-2-right;
+    width: 10%;
+}
+
+.container-2{
+    display: grid;
+    grid-template-areas: "con-2-left con-2-center con-2-right";
+}
+
+
+
+.led-green {
+    margin: 20px auto;
+    width: 25px;
+    height: 25px;
+    background-color: rgb(214, 250, 54);
+    border-radius: 50%;
+    box-shadow: rgb(24, 87, 43) 0 -1px 7px 1px, inset #460 0 -1px 9px, #7D0 0 2px 12px;
+}
+
+.led-gray {
+    margin: 20px auto;
+    width: 25px;
+    height: 25px;
+    background-color: rgb(78, 78, 76);
+    border-radius: 50%;
+    /* box-shadow: rgb(24, 87, 43) 0 -1px 7px 1px, inset #460 0 -1px 9px, #7D0 0 2px 12px; */
+}
+
+.indicator label {
+    font-size: x-large;
+    font-weight: bold;
+    
+}
+
+.indicator{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    width: 100%;
+    align-items: center;
+}
+
+.autoIndicatorContainer{
+    grid-area: autInd;
+}
+
+.oilIndicatorContainer{
+    grid-area: oilInd;
+}
+
+.hydraulicIndicatorContainer{
+    grid-area: hydInd;
+}
+
+.waterPressureIndicatorContainer{
+    grid-area: watInd;
+}
+
+.waterLowLowIndicatorContainer{
+    grid-area: wLLInd;
+}
+
+.waterLowIndicatorContainer{
+    grid-area: wLoInd;
+}
+
+.doorClosedIndicatorContainer {
+    grid-area: dClInd;
+}
+
+.doorOpenIndicatorContainer {
+    grid-area: dOpInd;
+}
+
+.doorLockLeftIndicatorContainer{
+    grid-area: dllInd;
+}
+
+.doorLockRightIndicatorContainer{
+    grid-area: dlrInd;
+}
+
+.intensifierForwardIndicatorContainer{
+    grid-area: inFInd;
+}
+
+.intensifierRetractedIndicatorContainer{
+    grid-area: inRInd;
+}
+
+.status-footer{
+    grid-area: footer;
+}
+
+#closeStatusButton{
+    float: right;
+}
+
+.statusScreen h2 {
+    grid-area: header;
+    text-align: center;
+    margin: 0;
+    color: blue;
+}
+
+.statusScreen {
+    border: rgb(179, 179, 179) 15px inset;
+    border-style: ridge;
+    background-color:rgb(179, 179, 179);
+    height: 70%;
+    width: 60%;
+    position: fixed;
+    top: 50px;
+    left: 10%;
+    z-index: 1;
+    display: grid;
+    grid-template-areas: 
+        "header header"
+        "autInd dClInd"
+        "hydInd dOpInd"
+        "oilInd dllInd"
+        "watInd dlrInd"
+        "wLLInd inFInd"
+        "wLoInd inRInd"
+        "footer footer";
+}
+
+
+.alarmScreen {
+    border: rgb(179, 179, 179) 15px inset;
+    border-style: ridge;
+    background-color:rgb(179, 179, 179);
+    height: 70%;
+    width: 60%;
+    position: fixed;
+    top: 50px;
+    left: 10%;
+    z-index: 1;
+}
+
+.alarmScreen h2 {
+    text-align: center;
+    margin: 0;
+    color: blue;
+}
+
+
+
+.hidden {
+    display: none;
 }

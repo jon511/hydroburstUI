@@ -1,6 +1,8 @@
 class PlcInputs{
 
     static Auto = false
+    static Manual = false
+    static ResetIndicator = false
     static HydraulicPumpOn = false
     static OilLevelOk = false
     static WaterPressureOk = false
@@ -13,5 +15,8 @@ class PlcInputs{
     static IntensifierFoward = false
     static IntensifierRetracted = false
     static ReadyForTest = false
-    
+    static TestIsActive = false
+    static StartTestIndicator = false
+    static StopTestIndicator = false
+    static WaterInletOn = false
 }

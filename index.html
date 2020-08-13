@@ -12,56 +12,187 @@
   </head>
   <body>
     <h1>MAIN SCREEN</h1>
+
+    <div class="liveReadingsContainer">
+      <div class="liveReadings">
+        <h2>Actual Values</h2>
+        <div class="liveReading">
+          <label for="partTransducerActual">Part Transducer (PSI): </label>
+          <label class="actualValue" id="partTransducerActual">20000</label>
+        </div>
+        <div class="liveReading">
+          <label for="accTransducerActual">Accumulator Transducer (PSI): </label>
+          <label class="actualValue" id="accTransducerActual">20000</label>
+        </div>
+      </div>
+    </div>
+    
+
     <div id="resultDiv">
-      <div id="burstPressureDiv">
-        <label for="burstPressureResultId">BURST PRESSURE (PSI)</label>
-        <input type="text" name="burstPressureResult" id="burstPressureResultId" disabled>
+      <div id="burstPressureDiv" class="resultItem">
+        <label for="burstPressureResultId">BURST PRESSURE (PSI): </label>
+        <label id="burstPressureResultID" class="resultLabel">2000</label>
+      </div>
+      <div id="cycleCountDiv" class="resultItem">
+        <label for="cycleCountResultId">Cycle Count: </label>
+        <label id="cycleCountResultId" class="resultLabel">500</label>
+      </div>
+      <div id="cycleTimeDiv" class="resultItem">
+        <label for="cycleTimeResultId">Cycle Time (Sec)</label>
+        <label id="cycleTimeResultId" class="resultLabel">2000</label>
       </div>
     </div>
     <div>
       
-      <div>
-        <label for="rampRateWrite">Ramp Rate:</label>
-        <input type="number" name="rampRate" id="rampRateWrite">
-      </div>
-      <div>
-        <label for="cycleCountWrite">Cycle Count:</label>
-        <input type="number" name="cycleCount" id="cycleCountWrite">
-      </div>
-      <div>
-        <label for="minPressureWrite">Minimum Pressure:</label>
-        <input type="number" name="minPressure" id="minPressureWrite">
-      </div>
-      <div>
-        <label for="maxPressureWrite">Maximum Pressure:</label>
-        <input type="number" name="maxPressure" id="maxPressureWrite">
-      </div>
     </div>
-    <button id="autoButton">Auto Mode</button>
-    <button id="manualButton">Manual Mode</button>
-    <button id="writeSetupButton">Write To PLC</button>
-    <button id="startButton">Start</button>
-    <button id="stopButton">Stop</button>
-    <button id="openDoorButton">Open Door</button>
-    <button id="closeDoorButton">Close Door</button>
-    <button id="waterInletButton">Water Inlet</button>
-    <button id="resetButton">Reset</button>
-    <button id="showSetup" class="cycleButton">Setup Screen</button>
+
+    <div class="container-2">
+      <div class="container-2-left"></div>
+      <div class="mainButtons ontainer-2-center">
+        <button id="autoButton" class="pushbutton ind-off">Auto Mode</button>
+        <button id="manualButton" class="pushbutton ind-off">Manual Mode</button>
+        <button id="startButton" class="pushbutton ind-off">Start Test</button>
+        <button id="stopButton" class="pushbutton ind-off">Stop Test</button>
+        <button id="openDoorButton" class="pushbutton ind-off">Open Door</button>
+        <button id="closeDoorButton" class="pushbutton ind-off">Close Door</button>
+        <button id="waterInletButton" class="pushbutton ind-off">Water Inlet</button>
+        <button id="resetButton" class="pushbutton ind-off">Reset</button>
+        <button id="showSetup" class="pushbutton ind-off">Setup Screen</button>
+        <button id="showStatus" class="pushbutton ind-off">Status Screen</button>
+        <button id="showKeyboard" class="pushbutton ind-off">Show Keyboard</button>
+        <button id="showGraph" class="pushbutton ind-off">Graph Screen</button>
+        <button id="showAlarm" class="pushbutton ind-off">Alarm Screen</button>
+      </div>
+      <div class="container-2-right"></div>
+    </div>
 
     
-    We are using node <script>document.write(process.versions.node)</script>,
+    <!-- We are using node <script>document.write(process.versions.node)</script>,
     Chrome <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
-    <div id="setupDiv" class="setupClass">
+    and Electron <script>document.write(process.versions.electron)</script>. -->
+
+    <div id="setupDiv" class="setupClass hidden">
     
       <div class="opMode">
-        <h3>OPERATING MODE</h3>
+        <h2>OPERATING MODE</h2>
         <button type="button" class="cycleButton" id="standardTestButton">Standard Test</button><br>
         <button class="cycleButton" id="cycleTestButton">Cycle Test</button><br>
         <button class="cycleButton" id="dynamicTestButton">Dynamic Test</button><br>
-        <button class="cycleButton" id="closeSetupPageButton">Close</button>
+        
+      </div>
+
+      <div class="setupInputs">
+        <div class="setupInput si1">
+          <div>
+            <label for="rampRate">Ramp Rate (PSI/sec): </label>
+            <label class="actualValue" id="rampRateActual">20000</label>
+          </div>
+          <input type="number" id="rampRate" placeholder="Enter new value">
+          <button type="button" class="enterButton" id="rampRateEnter">Enter</button>
+        </div>
+        <div class="setupInput si2">
+          <div>
+            <label for="cycleCount">Cycle Count:</label>
+            <label class="actualValue" id="cyclecountActual">500</label>
+          </div>
+          <input type="number" id="cycleCount" placeholder="Enter new value">
+          <button type="button" class="enterButton" id="cycleCountEnter">Enter</button>
+        </div>
+        <div class="setupInput si3">
+          <div>
+            <label for="minPressure">Minimum Pressure (PSI):</label>
+            <label class="actualValue" id="minPressureActual">500</label>
+          </div>
+          <input type="number" id="minPressure" placeholder="Enter new value">
+          <button type="button" class="enterButton" id="minPressureEnter">Enter</button>
+        </div>
+        <div class="setupInput si4">
+          <div>
+            <label for="maxPressure">Maximum Pressure (PSI):</label>
+            <label class="actualValue" id="maxPressureActual">5000</label>
+          </div>
+          <input type="number" id="maxPressure" placeholder="Enter new value">
+          <button type="button" class="enterButton" id="maxPressureEnter">Enter</button>
+        </div>
       </div>
     
+      <button class="menuButton" id="showNumpadButton">Show Number Pad</button>
+      <button class="menuButton" id="closeSetupPageButton">Close Window</button>
+    </div>
+
+    <div class="statusScreen hidden">
+
+      <h2>Status</h2>
+
+      <div class="autoIndicatorContainer indicator">
+        <div id="autoIndicatorLED" class="led-green"></div>
+        <label>Automatic Mode</label>
+      </div>
+
+      <div class="oilIndicatorContainer indicator">
+        <div id="oilIndicatorLED" class="led-green"></div>
+        <label>Oil Level OK</label>
+      </div>
+
+      <div class="hydraulicIndicatorContainer indicator">
+        <div id="hydraulicIndicatorLED" class="led-green"></div>
+        <label>Hydraulic Pump</label>
+      </div>
+
+      <div class="waterPressureIndicatorContainer indicator">
+        <div id="waterPressureIndicatorLED" class="led-green"></div>
+        <label>Water Pressure > 50 PSI</label>
+      </div>
+      
+      <div class="waterLowLowIndicatorContainer indicator">
+        <div id="waterLowLowIndicatorLED" class="led-green"></div>
+        <label>Water Tank Not Low Low</label>
+      </div>
+
+      <div class="waterLowIndicatorContainer indicator">
+        <div id="waterLowIndicatorLED" class="led-green"></div>
+        <label>Water Tank Not Low</label>
+      </div>
+
+      <div class="doorClosedIndicatorContainer indicator">
+        <div id="doorClosedIndicatorLED" class="led-green"></div>
+        <label>Door Closed</label>
+      </div>
+
+      <div class="doorOpenIndicatorContainer indicator">
+        <div id="doorLOpenIndicatorLED" class="led-green"></div>
+        <label>Door Open</label>
+      </div>
+
+      <div class="doorLockLeftIndicatorContainer indicator">
+        <div id="doorLockLeftIndicatorLED" class="led-green"></div>
+        <label>Door Lock Left</label>
+      </div>
+
+      <div class="doorLockRightIndicatorContainer indicator">
+        <div id="doorLockRightIndicatorLED" class="led-green"></div>
+        <label>Door Lock Right</label>
+      </div>
+
+      <div class="intensifierForwardIndicatorContainer indicator">
+        <div id="intensifierForwardIndicatorLED" class="led-green"></div>
+        <label>Intensifier Extended</label>
+      </div>
+
+      <div class="intensifierRetractedIndicatorContainer indicator">
+        <div id="intensifierRetractedIndicatorLED" class="led-green"></div>
+        <label>Intensifier Retracted</label>
+      </div>
+
+      <div class="status-footer">
+        <button class="menuButton" id="closeStatusButton">Close Window</button>
+      </div>
+
+    </div>
+
+    <div class="alarmScreen hidden">
+      <h2>Alarm Screen</h2>
+
     </div>
 
 </body>
