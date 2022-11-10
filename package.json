@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/jon511/hydroburstUI#readme",
   "devDependencies": {
-    "electron": "^9.1.2"
+    "electron": "^18.3.7"
   },
   "dependencies": {
     "ethernet-ip": "^1.2.5"
